@@ -1,0 +1,6 @@
+flask
+gunicorn
+flask_session
+bcrypt
+psycopg2
+boto3

@@ -92,14 +92,19 @@ For storing session these options are available:
 - `requirement.txt`: a file that contains a list of packages or libraries needed to work on a project that can all be installed with the file
 
 
-### get data and upload to s3
+### Get data and Upload to S3
 
-### run webservice
+### Run Webservice
 
 ## to do
 
-* django webservice
-* fast api webservice
-* multi-thread and multi chunk upload for bigger files
+* Django webservice
+* Fast API webservice
+* Multi-Thread and Multi Chunk upload for bigger files
 
-contribution
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.

@@ -91,12 +91,56 @@ For storing session these options are available:
 
 - `requirement.txt`: a file that contains a list of packages or libraries needed to work on a project that can all be installed with the file
 
+```bash
+python3 -m pip install -r requirements.txt
+```
 
 ### Get data and Upload to S3
 
+```bash
+python3 upload_s3_db.py
+```
+
+Also you can have systemd service for that.
+
 ### Run Webservice
 
-## to do
+Run this command in flask workdir:
+
+```bash
+gunicorn --workers 4 --bind 0.0.0.0:8000 wsgi:app
+```
+
+Also you can have systemd service for that.
+
+```
+# /etc/systemd/system/webservice.service
+[Unit]
+Description=gunicorn
+daemon After=network.target
+[Service]
+User=root
+Group=root
+WorkingDirectory=path/to/flask
+ExecStart=/usr/local/bin/gunicorn --workers 4 --bind 0.0.0.0:8000 wsgi:app
+LimitNOFILE=infinity
+LimitMEMLOCK=infinity
+[Install]
+WantedBy=multi-user.target
+```
+
+## Docker
+Also we have Dockerfile for:
+- Get data and Upload to S3
+- Webservice
+
+So you can build image with this command in relevant folder:
+
+```bash
+docker build -t IMAGE_NAME:IMAGE_TAG .
+```
+
+## To Do
 
 * Django webservice
 * Fast API webservice

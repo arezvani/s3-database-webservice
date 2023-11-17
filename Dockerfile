@@ -21,10 +21,12 @@ RUN groupadd -g 1001 code && \
 
 WORKDIR /code
 
-COPY --chown=code:code ./ .
+COPY --chown=code:code requirements.txt .
+COPY --chown=code:code upload_s3_db.py .
+COPY --chown=code:code config.py .
 
 RUN pip install  --no-cache -r requirements.txt
 
 USER 1001
 
-ENTRYPOINT /usr/local/bin/gunicorn --workers 4 --bind 0.0.0.0:8008 wsgi:app
+ENTRYPOINT /usr/local/bin/python upload_s3_db.py

@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=$PYTHON_VERSION
+ARG PYTHON_VERSION=3.8
 
 FROM python:$PYTHON_VERSION-slim as builder
 
@@ -14,7 +14,7 @@ ENV PIP_DEFAULT_TIMEOUT=1000 \
     OS_PACKAGES=$OS_PACKAGES
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends `echo $OS_PACKAGES | sed 's+,+ +g'`
+    apt-get install -y --no-install-recommends python3-dev libpq-dev build-essential
 
 RUN groupadd -g 1001 code && \
     useradd -r -u 1001 -g code code
